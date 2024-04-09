@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1837800027521704"
+     crossorigin="anonymous"></script>
+
+    <style>
+    *{
+        overflow: hidden
+    }
+    body{
+        background-color: grey;
+    }
+
+    .glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10vh;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+                .part5 {
+                display: grid;
+                grid-template-colums: repeat(6, 1fr);
+                min-height:100vh,
+                }
+
+                .container.group1,
+                .container.group2 {
+                display: contents;
+                }
+
+                .item1 {
+                grid-column: 2 /span 4;
+                grid-row: 1 /span 2;
+                /*border: solid;*/
+                /* color: tomato; */
+                display: flex;
+                align-items: bottom;
+                justify-content: center;
+                }
+
+                .item2 {
+                grid-column: 2 /span 4;
+                grid-row: 3 /span 4;
+                /*border: solid;*/
+                /*color: turquoise;*/
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+
+                .item3 {
+                grid-column: 2 /span 4;
+                grid-row: 6 /span 4;
+                /*border: solid;*/
+                /*color: green;*/
+                display: grid;
+                justify-content: center;
+                }
+                .item7 {
+                grid-column: 2 /span 4;
+                grid-row: 7 /span 7;
+                /*border: solid;*/
+                /*color: green;*/
+                position: absolute;
+                top: 90vh;
+                right: 50vw;
+                }
+
+                .item4 {
+                grid-column: 2 /span 4;
+                grid-row: 7 /span 7;
+                /*border: solid;*/
+                display: flex;
+                align-items: top;
+                justify-content: center;
+                }
+                .item5 {
+                grid-column: 1;
+                grid-row: 1 /span 7;
+                /*border: solid;*/
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+                .item6 {
+                grid-column: 6;
+                grid-row: 1 /span 7;
+                /*border: solid;*/
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+
+                .item8 {
+                grid-column: 1 /span 7;
+                grid-row: 15;
+                /*border: solid;*/
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+
+                
+
+
+
+                /* demo*/
+
+                * {
+                margin: 0;
+                }
+                /*
+                [class^=item] {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+                */
+        </style>
+    </style>
+</head>
+
+<body onresize="resize()">  
+    <section class="part5 container">
+        <div class="container group1">
+          <div class="item item1"><canvas id="them" ></canvas></div>
+          <div class="item item2" id="gameSide"><canvas id="canvas" ></canvas></div>
+          <!-- Base Code
+            <span><textbox>Create Room</textbox><input id = "roomName" style="width:20vh; height:2vh; font-size:1.5vh;"></input><button onclick="join()" style="width:8vh; height:2vh; font-size:1.5vh;">Join</button></span> 
+            <span><span id="gameMessage">QuickPlay</span> <button onclick="quickPlay()" style="width:8vh; height:2vh; font-size:1.5vh;">QuickPlay</button></span>
+          -->
+          <div class="item item3" id="uiStuff"  style="font-size:2vh; height:15vh ">Loading
+          </div>
+        </div>
+        <div class="container group2">
+          <div class="item item4"><canvas id="you"></canvas></div>
+          <!--Base code
+            <span><button onclick="surrender()" style="width:8vh; height:2vh; font-size:1.5vh;" class="glow-on-hover">Are you sure?</button></span>
+          -->
+          <div class="item item7"  id="uiStuffPlayer"  style="font-size:2vh; "><span><button onclick="confirmSur()" style="width:8vh; height:2vh; font-size:1.5vh;" class="glow-on-hover" id="giveUp">give up</button>
+          </span></div>
+          <div class="item item8"><a href="info.html">Patch Notes and Credit</a></div>
+          <div class="item item5">*Ads Eventually
+
+  
+
+
+
+            
+          </div>
+          <div class="item item6">*Ads Eventually</div>
+        </div>
+      </section>
+    
+      <!--
+        <canvas id="them"></canvas>
+            
+        
+            <canvas id="canvas"></canvas>
+            <textbox>Create Room</textbox><input id = "roomName"></input><button onclick="join()">Join</button> <span id="gameMessage">not in a game</span>
+        
+            <canvas id="you"></canvas>
+      -->
+ 
+    
+    
+    
+</body>
+
+<script src="public/indexClient.js"></script>
+<script src="public/peiceMoveset.js"></script>
+
+</html>
+<img src = "Mortal/frame0000.png" id="mortal1" style="visibility:hidden"></img>
+<img src = "Mortal/frame0001.png" id="mortal2" style="visibility:hidden"></img>
+<img src = "Mortal/frame0002.png" id="mortal3" style="visibility:hidden"></img>
+<img src = "Mortal/frame0003.png" id="mortal4" style="visibility:hidden"></img>
+<img src = "Mortal/frame0004.png" id="mortal5" style="visibility:hidden"></img>
+<img src = "Mortal/frame0005.png" id="mortal6" style="visibility:hidden"></img>
+<img src = "Mortal/frame0006.png" id="mortal7" style="visibility:hidden"></img>
+<img src = "Mortal/frame0007.png" id="mortal8" style="visibility:hidden"></img>
+<img src = "Mortal/frame0008.png" id="mortal9" style="visibility:hidden"></img>
+<img src = "Mortal/frame0009.png" id="mortal10" style="visibility:hidden"></img>
+
+<img src = "MortalOp/frame0000.png" id="mortalop1" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0001.png" id="mortalop2" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0002.png" id="mortalop3" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0003.png" id="mortalop4" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0004.png" id="mortalop5" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0005.png" id="mortalop6" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0006.png" id="mortalop7" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0007.png" id="mortalop8" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0008.png" id="mortalop9" style="visibility:hidden"></img>
+<img src = "MortalOp/frame0009.png" id="mortalop10" style="visibility:hidden"></img>
+
+<img src = "Selection/frame0000.png" id="Selection1" style="visibility:hidden"></img>
+<img src = "Selection/frame0001.png" id="Selection2" style="visibility:hidden"></img>
+<img src = "Selection/frame0002.png" id="Selection3" style="visibility:hidden"></img>
+<img src = "Selection/frame0003.png" id="Selection4" style="visibility:hidden"></img>
+<img src = "Selection/frame0004.png" id="Selection5" style="visibility:hidden"></img>
+<img src = "Selection/frame0005.png" id="Selection6" style="visibility:hidden"></img>
+<img src = "Selection/frame0006.png" id="Selection7" style="visibility:hidden"></img>
+<img src = "Selection/frame0007.png" id="Selection8" style="visibility:hidden"></img>
+<img src = "Selection/frame0008.png" id="Selection9" style="visibility:hidden"></img>
+<img src = "Selection/frame0009.png" id="Selection10" style="visibility:hidden"></img>
+
+<img src = "Pillar/frame0000.png" id="pillar1" style="visibility:hidden"></img>
+<img src = "Pillar/frame0001.png" id="pillar2" style="visibility:hidden"></img>
+<img src = "Pillar/frame0002.png" id="pillar3" style="visibility:hidden"></img>
+<img src = "Pillar/frame0003.png" id="pillar4" style="visibility:hidden"></img>
+<img src = "Pillar/frame0004.png" id="pillar5" style="visibility:hidden"></img>
+<img src = "Pillar/frame0005.png" id="pillar6" style="visibility:hidden"></img>
+<img src = "Pillar/frame0006.png" id="pillar7" style="visibility:hidden"></img>
+<img src = "Pillar/frame0007.png" id="pillar8" style="visibility:hidden"></img>
+<img src = "Pillar/frame0008.png" id="pillar9" style="visibility:hidden"></img>
+<img src = "Pillar/frame0009.png" id="pillar10" style="visibility:hidden"></img>
+
+<img src = "Endure/frame0000.png" id="endure1" style="visibility:hidden"></img>
+<img src = "Endure/frame0001.png" id="endure2" style="visibility:hidden"></img>
+<img src = "Endure/frame0002.png" id="endure3" style="visibility:hidden"></img>
+<img src = "Endure/frame0003.png" id="endure4" style="visibility:hidden"></img>
+<img src = "Endure/frame0004.png" id="endure5" style="visibility:hidden"></img>
+<img src = "Endure/frame0005.png" id="endure6" style="visibility:hidden"></img>
+<img src = "Endure/frame0006.png" id="endure7" style="visibility:hidden"></img>
+<img src = "Endure/frame0007.png" id="endure8" style="visibility:hidden"></img>
+<img src = "Endure/frame0008.png" id="endure9" style="visibility:hidden"></img>
+<img src = "Endure/frame0009.png" id="endure10" style="visibility:hidden"></img>
+<img src = "Endure/frame0010.png" id="endure11" style="visibility:hidden"></img>
+<img src = "Endure/frame0011.png" id="endure12" style="visibility:hidden"></img>
+<img src = "Endure/frame0012.png" id="endure13" style="visibility:hidden"></img>
+<img src = "Endure/frame0013.png" id="endure14" style="visibility:hidden"></img>
+
+
+<img src = "Glider/frame0000.png" id="glider1" style="visibility:hidden"></img>
+<img src = "Glider/frame0001.png" id="glider2" style="visibility:hidden"></img>
+<img src = "Glider/frame0002.png" id="glider3" style="visibility:hidden"></img>
+<img src = "Glider/frame0003.png" id="glider4" style="visibility:hidden"></img>
+<img src = "Glider/frame0004.png" id="glider5" style="visibility:hidden"></img>
+<img src = "Glider/frame0005.png" id="glider6" style="visibility:hidden"></img>
+<img src = "Glider/frame0006.png" id="glider7" style="visibility:hidden"></img>
+<img src = "Glider/frame0007.png" id="glider8" style="visibility:hidden"></img>
+<img src = "Glider/frame0008.png" id="glider9" style="visibility:hidden"></img>
+<img src = "Glider/frame0009.png" id="glider10" style="visibility:hidden"></img>
+
+<img src = "GliderOp/frame0000.png" id="gliderop1" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0001.png" id="gliderop2" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0002.png" id="gliderop3" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0003.png" id="gliderop4" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0004.png" id="gliderop5" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0005.png" id="gliderop6" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0006.png" id="gliderop7" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0007.png" id="gliderop8" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0008.png" id="gliderop9" style="visibility:hidden"></img>
+<img src = "GliderOp/frame0009.png" id="gliderop10" style="visibility:hidden"></img>
+
+<img src = "Restless/frame0000.png" id="restless1" style="visibility:hidden"></img>
+<img src = "Restless/frame0001.png" id="restless2" style="visibility:hidden"></img>
+<img src = "Restless/frame0002.png" id="restless3" style="visibility:hidden"></img>
+<img src = "Restless/frame0003.png" id="restless4" style="visibility:hidden"></img>
+<img src = "Restless/frame0004.png" id="restless5" style="visibility:hidden"></img>
+<img src = "Restless/frame0005.png" id="restless6" style="visibility:hidden"></img>
+<img src = "Restless/frame0006.png" id="restless7" style="visibility:hidden"></img>
+<img src = "Restless/frame0007.png" id="restless8" style="visibility:hidden"></img>
+<img src = "Restless/frame0008.png" id="restless9" style="visibility:hidden"></img>
+<img src = "Restless/frame0009.png" id="restless10" style="visibility:hidden"></img>
+<img src = "Restless/frame0010.png" id="restless11" style="visibility:hidden"></img>
+
+<img src = "RestlessOp/frame0000.png" id="restlessop1" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0001.png" id="restlessop2" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0002.png" id="restlessop3" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0003.png" id="restlessop4" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0004.png" id="restlessop5" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0005.png" id="restlessop6" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0006.png" id="restlessop7" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0007.png" id="restlessop8" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0008.png" id="restlessop9" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0009.png" id="restlessop10" style="visibility:hidden"></img>
+<img src = "RestlessOp/frame0010.png" id="restlessop11" style="visibility:hidden"></img>
+
+<img src = "Horses/frame0000.png" id="horses1" style="visibility:hidden"></img>
+<img src = "Horses/frame0001.png" id="horses2" style="visibility:hidden"></img>
+<img src = "Horses/frame0002.png" id="horses3" style="visibility:hidden"></img>
+<img src = "Horses/frame0003.png" id="horses4" style="visibility:hidden"></img>
+<img src = "Horses/frame0004.png" id="horses5" style="visibility:hidden"></img>
+<img src = "Horses/frame0005.png" id="horses6" style="visibility:hidden"></img>
+<img src = "Horses/frame0006.png" id="horses7" style="visibility:hidden"></img>
+<img src = "Horses/frame0007.png" id="horses8" style="visibility:hidden"></img>
+<img src = "Horses/frame0008.png" id="horses9" style="visibility:hidden"></img>
+<img src = "Horses/frame0009.png" id="horses10" style="visibility:hidden"></img>
+
+<img src = "HorsesOp/frame0000.png" id="horsesop1" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0001.png" id="horsesop2" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0002.png" id="horsesop3" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0003.png" id="horsesop4" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0004.png" id="horsesop5" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0005.png" id="horsesop6" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0006.png" id="horsesop7" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0007.png" id="horsesop8" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0008.png" id="horsesop9" style="visibility:hidden"></img>
+<img src = "HorsesOp/frame0009.png" id="horsesop10" style="visibility:hidden"></img>
+
+<img src = "Bishop/frame0000.png" id="bishop1" style="visibility:hidden"></img>
+<img src = "Bishop/frame0001.png" id="bishop2" style="visibility:hidden"></img>
+<img src = "Bishop/frame0002.png" id="bishop3" style="visibility:hidden"></img>
+<img src = "Bishop/frame0003.png" id="bishop4" style="visibility:hidden"></img>
+<img src = "Bishop/frame0004.png" id="bishop5" style="visibility:hidden"></img>
+<img src = "Bishop/frame0005.png" id="bishop6" style="visibility:hidden"></img>
+<img src = "Bishop/frame0006.png" id="bishop7" style="visibility:hidden"></img>
+<img src = "Bishop/frame0007.png" id="bishop8" style="visibility:hidden"></img>
+<img src = "Bishop/frame0008.png" id="bishop9" style="visibility:hidden"></img>
+<img src = "Bishop/frame0009.png" id="bishop10" style="visibility:hidden"></img>
+
+<img src = "Proven/frame0000.png" id="proven1" style="visibility:hidden"></img>
+<img src = "Proven/frame0001.png" id="proven2" style="visibility:hidden"></img>
+<img src = "Proven/frame0002.png" id="proven3" style="visibility:hidden"></img>
+<img src = "Proven/frame0003.png" id="proven4" style="visibility:hidden"></img>
+<img src = "Proven/frame0004.png" id="proven5" style="visibility:hidden"></img>
+<img src = "Proven/frame0005.png" id="proven6" style="visibility:hidden"></img>
+<img src = "Proven/frame0006.png" id="proven7" style="visibility:hidden"></img>
+<img src = "Proven/frame0007.png" id="proven8" style="visibility:hidden"></img>
+<img src = "Proven/frame0008.png" id="proven9" style="visibility:hidden"></img>
+<img src = "Proven/frame0009.png" id="proven10" style="visibility:hidden"></img>
+<img src = "Proven/frame0010.png" id="proven11" style="visibility:hidden"></img>
+<img src = "Proven/frame0011.png" id="proven12" style="visibility:hidden"></img>
+<img src = "Proven/frame0012.png" id="proven13" style="visibility:hidden"></img>
+
+<img src = "ProvenOp/frame0000.png" id="provenOp1" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0001.png" id="provenOp2" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0002.png" id="provenOp3" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0003.png" id="provenOp4" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0004.png" id="provenOp5" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0005.png" id="provenOp6" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0006.png" id="provenOp7" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0007.png" id="provenOp8" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0008.png" id="provenOp9" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0009.png" id="provenOp10" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0010.png" id="provenOp11" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0011.png" id="provenOp12" style="visibility:hidden"></img>
+<img src = "ProvenOp/frame0012.png" id="provenOp13" style="visibility:hidden"></img>
+
+<img src = "BishopOp/frame0000.png" id="bishopop1" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0001.png" id="bishopop2" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0002.png" id="bishopop3" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0003.png" id="bishopop4" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0004.png" id="bishopop5" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0005.png" id="bishopop6" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0006.png" id="bishopop7" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0007.png" id="bishopop8" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0008.png" id="bishopop9" style="visibility:hidden"></img>
+<img src = "BishopOp/frame0009.png" id="bishopop10" style="visibility:hidden"></img>
+
+
+
+<img src = "Guardian/frame0000.png" id="guardian1" style="visibility:hidden"></img>
+<img src = "Guardian/frame0001.png" id="guardian2" style="visibility:hidden"></img>
+<img src = "Guardian/frame0002.png" id="guardian3" style="visibility:hidden"></img>
+<img src = "Guardian/frame0003.png" id="guardian4" style="visibility:hidden"></img>
+<img src = "Guardian/frame0004.png" id="guardian5" style="visibility:hidden"></img>
+<img src = "Guardian/frame0005.png" id="guardian6" style="visibility:hidden"></img>
+<img src = "Guardian/frame0006.png" id="guardian7" style="visibility:hidden"></img>
+<img src = "Guardian/frame0007.png" id="guardian8" style="visibility:hidden"></img>
+<img src = "Guardian/frame0008.png" id="guardian9" style="visibility:hidden"></img>
+<img src = "Guardian/frame0009.png" id="guardian10" style="visibility:hidden"></img>
+
+<img src = "AddTime/frame0000.png" id="time1" style="visibility:hidden"></img>
+<img src = "AddTime/frame0001.png" id="time2" style="visibility:hidden"></img>
+<img src = "AddTime/frame0002.png" id="time3" style="visibility:hidden"></img>
+<img src = "AddTime/frame0003.png" id="time4" style="visibility:hidden"></img>
+<img src = "AddTime/frame0004.png" id="time5" style="visibility:hidden"></img>
+<img src = "AddTime/frame0005.png" id="time6" style="visibility:hidden"></img>
+<img src = "AddTime/frame0006.png" id="time7" style="visibility:hidden"></img>
+<img src = "AddTime/frame0007.png" id="time8" style="visibility:hidden"></img>
+<img src = "AddTime/frame0008.png" id="time9" style="visibility:hidden"></img>
+<img src = "AddTime/frame0009.png" id="time10" style="visibility:hidden"></img>
+
+<img src = "GuardianOp/frame0000.png" id="guardianop1" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0001.png" id="guardianop2" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0002.png" id="guardianop3" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0003.png" id="guardianop4" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0004.png" id="guardianop5" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0005.png" id="guardianop6" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0006.png" id="guardianop7" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0007.png" id="guardianop8" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0008.png" id="guardianop9" style="visibility:hidden"></img>
+<img src = "GuardianOp/frame0009.png" id="guardianop10" style="visibility:hidden"></img>
+
+
+
+<img src = "Rook/frame0000.png" id="rook1" style="visibility:hidden"></img>
+<img src = "Rook/frame0001.png" id="rook2" style="visibility:hidden"></img>
+<img src = "Rook/frame0002.png" id="rook3" style="visibility:hidden"></img>
+<img src = "Rook/frame0003.png" id="rook4" style="visibility:hidden"></img>
+<img src = "Rook/frame0004.png" id="rook5" style="visibility:hidden"></img>
+<img src = "Rook/frame0005.png" id="rook6" style="visibility:hidden"></img>
+<img src = "Rook/frame0006.png" id="rook7" style="visibility:hidden"></img>
+<img src = "Rook/frame0007.png" id="rook8" style="visibility:hidden"></img>
+<img src = "Rook/frame0008.png" id="rook9" style="visibility:hidden"></img>
+<img src = "Rook/frame0009.png" id="rook10" style="visibility:hidden"></img>
+
+<img src = "RookOp/frame0000.png" id="rookop1" style="visibility:hidden"></img>
+<img src = "RookOp/frame0001.png" id="rookop2" style="visibility:hidden"></img>
+<img src = "RookOp/frame0002.png" id="rookop3" style="visibility:hidden"></img>
+<img src = "RookOp/frame0003.png" id="rookop4" style="visibility:hidden"></img>
+<img src = "RookOp/frame0004.png" id="rookop5" style="visibility:hidden"></img>
+<img src = "RookOp/frame0005.png" id="rookop6" style="visibility:hidden"></img>
+<img src = "RookOp/frame0006.png" id="rookop7" style="visibility:hidden"></img>
+<img src = "RookOp/frame0007.png" id="rookop8" style="visibility:hidden"></img>
+<img src = "RookOp/frame0008.png" id="rookop9" style="visibility:hidden"></img>
+<img src = "RookOp/frame0009.png" id="rookop10" style="visibility:hidden"></img>
+
+
+
+<img src = "Sling/frame0000.png" id="sling1" style="visibility:hidden"></img>
+<img src = "Sling/frame0001.png" id="sling2" style="visibility:hidden"></img>
+<img src = "Sling/frame0002.png" id="sling3" style="visibility:hidden"></img>
+<img src = "Sling/frame0003.png" id="sling4" style="visibility:hidden"></img>
+<img src = "Sling/frame0004.png" id="sling5" style="visibility:hidden"></img>
+<img src = "Sling/frame0005.png" id="sling6" style="visibility:hidden"></img>
+<img src = "Sling/frame0006.png" id="sling7" style="visibility:hidden"></img>
+<img src = "Sling/frame0007.png" id="sling8" style="visibility:hidden"></img>
+<img src = "Sling/frame0008.png" id="sling9" style="visibility:hidden"></img>
+<img src = "Sling/frame0009.png" id="sling10" style="visibility:hidden"></img>
+
+<img src = "SlingOp/frame0000.png" id="slingop1" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0001.png" id="slingop2" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0002.png" id="slingop3" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0003.png" id="slingop4" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0004.png" id="slingop5" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0005.png" id="slingop6" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0006.png" id="slingop7" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0007.png" id="slingop8" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0008.png" id="slingop9" style="visibility:hidden"></img>
+<img src = "SlingOp/frame0009.png" id="slingop10" style="visibility:hidden"></img>
+
+
+
+<img src = "Burst/frame0000.png" id="burst1" style="visibility:hidden"></img>
+<img src = "Burst/frame0001.png" id="burst2" style="visibility:hidden"></img>
+<img src = "Burst/frame0002.png" id="burst3" style="visibility:hidden"></img>
+<img src = "Burst/frame0003.png" id="burst4" style="visibility:hidden"></img>
+<img src = "Burst/frame0004.png" id="burst5" style="visibility:hidden"></img>
+<img src = "Burst/frame0005.png" id="burst6" style="visibility:hidden"></img>
+<img src = "Burst/frame0006.png" id="burst7" style="visibility:hidden"></img>
+<img src = "Burst/frame0007.png" id="burst8" style="visibility:hidden"></img>
+<img src = "Burst/frame0008.png" id="burst9" style="visibility:hidden"></img>
+<img src = "Burst/frame0009.png" id="burst10" style="visibility:hidden"></img>
+
+<img src = "BurstOp/frame0000.png" id="burstop1" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0001.png" id="burstop2" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0002.png" id="burstop3" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0003.png" id="burstop4" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0004.png" id="burstop5" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0005.png" id="burstop6" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0006.png" id="burstop7" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0007.png" id="burstop8" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0008.png" id="burstop9" style="visibility:hidden"></img>
+<img src = "BurstOp/frame0009.png" id="burstop10" style="visibility:hidden"></img>
+
+
+
+<img src = "Core/frame0000.png" id="core1" style="visibility:hidden"></img>
+<img src = "Core/frame0001.png" id="core2" style="visibility:hidden"></img>
+<img src = "Core/frame0002.png" id="core3" style="visibility:hidden"></img>
+<img src = "Core/frame0003.png" id="core4" style="visibility:hidden"></img>
+<img src = "Core/frame0004.png" id="core5" style="visibility:hidden"></img>
+<img src = "Core/frame0005.png" id="core6" style="visibility:hidden"></img>
+<img src = "Core/frame0006.png" id="core7" style="visibility:hidden"></img>
+<img src = "Core/frame0007.png" id="core8" style="visibility:hidden"></img>
+<img src = "Core/frame0008.png" id="core9" style="visibility:hidden"></img>
+<img src = "Core/frame0009.png" id="core10" style="visibility:hidden"></img>
+
+<img src = "Ian/Angered.png" id="ianAnn" style="visibility:hidden"></img>
+<img src = "Ian/Defeat.png" id="ianDef" style="visibility:hidden"></img>
+<img src = "Ian/Enraged.png" id="ianEnr" style="visibility:hidden"></img>
+<img src = "Ian/Happy.png" id="ianHap" style="visibility:hidden"></img>
+<img src = "Ian/Neutral.png" id="ianNeu" style="visibility:hidden"></img>
+<img src = "Ian/Joyed.png" id="ianJoy" style="visibility:hidden"></img>
+<img src = "Ian/Victory.png" id="ianVic" style="visibility:hidden"></img>
+
+<img src = "Stella/Angered.png" id="stellaAnn" style="visibility:hidden"></img>
+<img src = "Stella/Defeat.png" id="stellaDef" style="visibility:hidden"></img>
+<img src = "Stella/Enraged.png" id="stellaEnr" style="visibility:hidden"></img>
+<img src = "Stella/Happy.png" id="stellaHap" style="visibility:hidden"></img>
+<img src = "Stella/Neutral.png" id="stellaNeu" style="visibility:hidden"></img>
+<img src = "Stella/Joyed.png" id="stellaJoy" style="visibility:hidden"></img>
+<img src = "Stella/Victory.png" id="stellaVic" style="visibility:hidden"></img>
+
+
+
+
+
+<audio controls>
+    <source src="Sound/Bishop.wav" id="bishop" type="audio/m4a" style="display:none">
+    <source src="Sound/Glider.wav" id="glider" type="audio/m4a" style="display:none">
+    <source src="Sound/Horses.wav" id="horses" type="audio/m4a" style="display:none">
+    <source src="Sound/Mortal.wav" id="mortal" type="audio/m4a" style="display:none">
+    <source src="Sound/Proven.wav" id="proven" type="audio/m4a" style="display:none">
+    <source src="Sound/Restless.wav" id="restless" type="audio/m4a" style="display:none">
+    <source src="Sound/Rook.wav" id="rook" type="audio/m4a" style="display:none">
+    <source src="Sound/Spare Sound 2.wav" id="burst" type="audio/m4a" style="display:none">
+    <source src="Sound/Spare Sound 3.wav" id="core" type="audio/m4a" style="display:none">
+    <source src="Sound/Spare Sound 4.wav" id="sling" type="audio/m4a" style="display:none">
+  </audio>
+
+
+
+
+
+<img src = "CoreOp/frame0000.png" id="coreop1" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0001.png" id="coreop2" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0002.png" id="coreop3" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0003.png" id="coreop4" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0004.png" id="coreop5" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0005.png" id="coreop6" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0006.png" id="coreop7" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0007.png" id="coreop8" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0008.png" id="coreop9" style="visibility:hidden"></img>
+<img src = "CoreOp/frame0009.png" id="coreop10" style="visibility:hidden" onload="reconnect()">></img>
+
+
+
+
+
